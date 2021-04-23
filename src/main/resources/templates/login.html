@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログインフォーム</title>
+</head>
+<body>
+	<h1>ログインフォーム</h1>
+//	「th:action=@{URL}」と設定してあげることでトークンを生成してURLに乗せてくれる
+  <form th:action="@{/sign_in}" method="post">
+    
+    <p>ID:</p>
+    <input type="text" name="id" placeholder="id" required="required" />
+    <p>メールアドレス:</p>
+    <input type="text" name="email" placeholder="email" required="required" />
+    <p>パスワード:</p>
+    <input type="text" name="password" placeholder="password" required="required" />
+    <button type="submit" value="Login">Sign in</button>
+  </form>
+</body>
+</html>
