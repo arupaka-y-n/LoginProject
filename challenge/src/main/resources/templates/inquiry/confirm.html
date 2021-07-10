@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">確認画面</title>
+</head>
+<body>
+  <h1 th:text="${title}"></h1>
+  <p>入力内容をご確認ください</p>
+  <div th:object="${inquiryForm}">
+    <p th:text="*{inquiryType}"></p>
+    <p>お名前</p>
+    <p th:text="*{inquiryUser}"></p>
+    <p>ご連絡先メールアドレス</p>
+    <p th:text="*{inquiryUserMail}"></p>
+    <p>お問い合わせ内容</p>
+    <p th:text="*{inquiryInfo}"></p>
+
+    <form method="post" action="#" th:action="@{/inquiry/form}">
+      <input type="hidden" name="inquiryType" th:value="*{inquiryType}">
+      <input type="hidden" name="inquiryUser" th:value="*{inquiryUser}">
+      <input type="hidden" name="inquiryUserMail" th:value="*{inquiryUserMail}">
+      <input type="hidden" name="inquiryInfo" th:value="*{inquiryInfo}">
+      <input type="submit" value="戻る">
+    </form>
+
+    <form method="post" action="#" th:action="@{/inquiry/complete}">
+      <input type="hidden" name="inquiryType" th:value="*{inquiryType}">
+      <input type="hidden" name="inquiryUser" th:value="*{inquiryUser}">
+      <input type="hidden" name="inquiryUserMail" th:value="*{inquiryUserMail}">
+      <input type="hidden" name="inquiryInfo" th:value="*{inquiryInfo}">
+      <input type="submit" value="送信">
+    </form>
+  </div>
+</body>
+</html>

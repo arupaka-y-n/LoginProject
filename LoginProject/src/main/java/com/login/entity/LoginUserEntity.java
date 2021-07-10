@@ -1,9 +1,11 @@
-package com.login.Entity;
+package com.login.entity;
 
 import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,17 +14,14 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "user")
-public class LoginUserEntity {
-
-//	user
-	public class AccountBase {
+public class LoginUserEntity {	
 		
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@NotNull
 		@Column(name = "ID")
 		private int id;
 		
-		@NotNull
 		@Column(name = "USEREMAIL")
 		private String userEmail;
 		
@@ -74,5 +73,5 @@ public class LoginUserEntity {
 		public void setActive(boolean isActive) {
 			this.isActive = isActive;
 		}
-	}
+	
 }

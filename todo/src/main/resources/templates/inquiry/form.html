@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lxmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Insert title here</title>
+</head>
+<body>
+  <h1 th:text="${title}"></h1>
+  <h2 th:text="${complete}"></h2>
+
+  <!-- th:action="@{/inquiry/confirm"}はドメイン + inquiry/confirmが生成される
+  定数は書かない
+  送信を押すと、nameの値とformのフィールドを揃える -->
+
+  <form method="post" action="#" th:action="@{/inquiry/confirm}" th:object="${inquiryForm}">
+    <label for="inquiryType">お問い合わせ項目</label>
+    <select name="inquiryType" th:value="inquieryType">
+      <option value="100">研修内容について</option>
+      <option value="200">研修講師について</option>
+      <option value="300">研修会場について</option>
+      <option value="400">その他</option>
+    </select>
+    <label for="inquiryUser">お名前:</label>
+    <input name="inquiryUser" type="text" th:value="*{inquiryUser}"><br>
+    <div th:if="${#fields.hasErrors('inquiryUser')}" th:errors="*{inquiryUser}"></div>
+    <label for="inquiryUserMail">ご連絡先メールアドレス</label>
+    <input name="inquiryUserMail" type="text" th:value="*{inquiryUserMail}"><br>
+    <div th:if="${#fields.hasErrors('inquiryUserMail')}" th:errors="*{inquiryUserMail}"></div>
+    <label for="inquiryInfo">お問い合わせ内容</label>
+    <textarea name="inquiryInfo" rows="3" cols="40"  th:field="*{inquiryInfo}"></textarea><br>
+    <div th:if="${#fields.hasErrors('inquiryInfo')}" th:errors="*{inquiryInfo}"></div>
+    <input type="submit" value="送信">
+  </form>
+</body>
+</html>

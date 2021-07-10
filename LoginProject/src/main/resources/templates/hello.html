@@ -8,8 +8,7 @@
 </head>
 <body>
   <p>こんにちは</p>
-  <p th:text="${userName}"></p>
-  <p>さん</p>
+  <p th:text="${userName}">さん</p>
 
   <form method="post" th:action="@{/logout}">
     <input type="submit" value="logout">

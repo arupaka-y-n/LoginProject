@@ -2,21 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ログインフォーム</title>
 </head>
 <body>
-  <form action="">
-    <h1>ログインフォーム</h1>
-    <div>
-      
-    </div>
+	<h1>ログインフォーム</h1>
+  <!--  ログイン失敗/ログアウトはgetパラメータにステータスが渡されているので、Thymeleafではparamから取得 -->
+  <div th:if="${param.logout}">
+    You have been logged out.
+  </div>
+
+  <div th:if="${param.error}">
+    ログインIDまたは、パスワードが違います。
+  </div>
+	<!-- 「th:action=@{URL}」と設定してあげることでトークンを生成してURLに乗せてくれる -->
+  <!-- 「/sign_in」がログイン判定処理を呼び出すViewNameとなっている -->
+  <form th:action="@{/sign_in}" method="post">
+    
+    <!-- <p>ID:</p>
+    <input type="text" name="id" placeholder="id" required="required" /> -->
     <p>メールアドレス:</p>
-    <input type="text" name="email" placeholder="email" required="required" />
+    <input type="text" name="userEmail" placeholder="useremail" required="required" />
     <p>パスワード:</p>
     <input type="text" name="password" placeholder="password" required="required" />
-    <button type="submit">Sign in</button>
+    <button type="submit" value="Login">Sign in</button>
   </form>
 </body>
 </html>

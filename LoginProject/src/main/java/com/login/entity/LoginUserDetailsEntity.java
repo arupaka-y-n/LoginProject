@@ -1,9 +1,11 @@
-package com.login.Entity;
+package com.login.entity;
 
 import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,10 +19,10 @@ import com.sun.istack.NotNull;
 @Table(name = "user_detail")
 public class LoginUserDetailsEntity {
 
-//	user_details
-	public class Account {
+//	public class Account {
 		
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@NotNull
 		@Column(name = "ID")
 		private int id;
@@ -33,6 +35,7 @@ public class LoginUserDetailsEntity {
 		@Column(name = "PASSWORD")
 		private String password;
 		
+		@NotNull
 		@Column(name = "USERNAME")
 		private String userName;
 		
@@ -73,6 +76,7 @@ public class LoginUserDetailsEntity {
 			return userName;
 		}
 
+		
 		public void setUserName(String userName) {
 			this.userName = userName;
 		}
@@ -101,14 +105,6 @@ public class LoginUserDetailsEntity {
 			this.updatedTime = updatedTime;
 		}
 
-		
-		
-		public Account() {}
-	}
 	
-//	@Repository
-//	public interface AccountRepository extends JpaRepository<Account, String> {
-////	  idが主キーなので検索用のメソッドを宣言しておきます。
-//		Account findByUsername(int id);
-//	}
 }
+

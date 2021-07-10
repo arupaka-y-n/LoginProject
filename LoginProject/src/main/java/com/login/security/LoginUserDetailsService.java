@@ -1,4 +1,5 @@
-//package com.login.Security;
+//package com.login.security;
+//
 //
 //import java.util.ArrayList;
 //import java.util.Collection;
@@ -8,12 +9,14 @@
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.User;
 //import org.springframework.security.core.userdetails.UserDetails;
+////import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.stereotype.Service;
 //
-//import com.login.Entity.LoginUserDetailsEntity.Account;
-//import com.login.Entity.LoginUserDetailsEntity.AccountRepository;
+//import com.login.dao.LoginUserDao;
+////import com.login.entity.LoginUserDetailsEntity.AccountRepository;
+//import com.login.form.LoginUserDetailsForm.Account;
 //
 //import antlr.StringUtils;
 //
@@ -23,7 +26,7 @@
 ////UserDetailsServiceは、認証処理で必要となる資格情報と,ユーザーの状態をデータストア から取得するためのインタフェース
 //public class LoginUserDetailsService implements UserDetailsService {
 //	
-//	private AccountRepository repository;
+//	private LoginUserDao userDao;
 //	
 //	@Autowired
 //	public LoginUserDetailsService(AccountRepository repository) {
@@ -40,7 +43,7 @@
 //			  }
 //			
 ////			DBからアカウント情報を探して取得
-//			Account account = repository.findByUsername(id);
+//			Account account = repository.findByUser(id);
 //		  
 ////		  	ユーザーデータが存在しない時、UsernameNotFoundExceptionを発生させる
 //			  if (account == null) {
@@ -48,13 +51,16 @@
 //			  }
 //			
 ////			List(ユーザー情報、権限)を作成
+////			権限を利用する場合は、DB上で権限テーブル、ユーザ権限テーブルを作成し管理が必要
 //			Collection<GrantedAuthority> authorities = new ArrayList<>();
 ////			認証を付与
 //			authorities.add(new SimpleGrantedAuthority(account.getRole()));
-////			認証を付与した新しいユーザークラスを作成する
-//			User user = new User(account.getId(), account.getPassword(), authorities);
 //			
-//			return user;
+////			UserDetailsはインタフェースなのでUserクラスのコンストラクタで生成したユーザオブジェクトを
+////			認証を付与した新しいユーザークラスを作成する
+//			UserDetails userDetails = (UserDetails)new User(account.getId(), account.getPassword(), authorities);
+//			
+//			return userDetails;
 //		}
 //	
 //}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2 th:text="${complete}"></h2>
+  <h1 th:text="${title}"></h1>
+  <form method="post" th:action="@{/inquiry/confirm}" th:object="${inquiryRequest}">
+    <!-- <label>名前</label>
+    <input type="text" id="name" placeholder="名前" /> -->
+    <label>返信用メールアドレス</label><br>
+    <input name="userEmail" type="text" th:value="*{userEmail}" placeholder="メールアドレス" /><br>
+    <label>お問い合わせ内容</label><br>
+    <input name="inquiryContent" th:value="*{inquiryContent}" placeholder="お問い合わせ内容"  /><br>
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
